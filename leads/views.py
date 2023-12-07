@@ -3,10 +3,17 @@ from django.http import HttpResponse
 from django.urls import reverse
 from .models import Lead
 from django.views import generic
-from .forms import LeadModelForm
+from .forms import LeadModelForm, CustomUserCreationForm
 from django.core.mail import send_mail
 
 # Create your views here.
+class SignUpView(generic.CreateView):
+    template_name = "registration/signup.html"
+    form_class = CustomUserCreationForm
+
+    def get_success_url(self) -> str:
+        return reverse("login")
+
 class HomePageView(generic.TemplateView):
     template_name = "home.html"
 
