@@ -40,7 +40,13 @@ INSTALLED_APPS = [
 
     # local apps
     "leads",
+
+    # User management
+    "allauth",
+    "allauth.account",
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -50,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'crm.urls'
@@ -131,6 +138,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "leads.User"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+AUTHENTICATION_BACKENDs = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+) 
 
 LOGIN_REDIRECT_URL = "/lead"
 LOGOUT_REDIRECT_URL = "homepage"

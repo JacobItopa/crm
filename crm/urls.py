@@ -10,8 +10,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", HomePageView.as_view(), name="homepage"),
     path('lead/', include("leads.urls", namespace='leads')),
-    path("logout/", LogoutView.as_view(), name="logout"),
-    path("login/", LoginView.as_view(), name="login"),  
+    path("accounts/", include("allauth.urls")),
+    #path("login/", LoginView.as_view(), name="login"),  
     path("signup/", SignUpView.as_view(), name="signup")
 ]
 
